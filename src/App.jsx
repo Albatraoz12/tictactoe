@@ -10,10 +10,12 @@ function App() {
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
   useEffect(() => {
-    checkWin();
-    checkTie();
-  }, [board]);
+    const hasWon = checkWin();
 
+    if (!hasWon) {
+      checkTie();
+    }
+  }, [board]);
   useEffect(() => {
     if (result.state !== 'none') {
       alert(`Game finished! Winning player: ${result.winner}`);
@@ -40,15 +42,16 @@ function App() {
     setPlayer(player === 'X' ? 'O' : 'X');
   };
 
-  // Checks the winner
+  // Modify checkWin to return a boolean indicating if there's a winner
   const checkWin = () => {
-    // Loop through the patterns arrays index with the players
+    let hasWon = false;
+
     Patterns.forEach((currentPattern) => {
-      // Checks which player won
       const firstPlayer = board[currentPattern[0]];
       if (firstPlayer === '') {
         return;
       }
+
       let foundWinningPattern = true;
       currentPattern.forEach((index) => {
         if (board[index] !== firstPlayer) {
@@ -58,12 +61,15 @@ function App() {
 
       if (foundWinningPattern) {
         setResult({
-          winner: firstPlayer, // Change to firstPlayer to accurately reflect the winner
+          winner: firstPlayer, // Use firstPlayer to correctly indicate the winner
           state: 'Won',
         });
+        hasWon = true;
         restarGame();
       }
     });
+
+    return hasWon; // Return true if a win is detected
   };
 
   const checkTie = () => {
