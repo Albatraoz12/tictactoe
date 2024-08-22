@@ -61,6 +61,7 @@ function App() {
           winner: player,
           state: 'Won',
         });
+        restarGame();
       }
     });
   };
@@ -75,7 +76,14 @@ function App() {
 
     if (filled) {
       setResult({ winner: 'No One', state: 'Tie' });
+      restarGame();
     }
+  };
+
+  //restart the game
+  const restarGame = () => {
+    setBoard(['', '', '', '', '', '', '', '', '']);
+    setPlayer('O');
   };
 
   return (
