@@ -17,8 +17,40 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 3rem;
   background-color: var(--purple);
   color: var(--black);
+}
+
+.intro {
+  font-size: 28px;
+}
+
+.btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--light-green);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: none;
+}
+.btn:hover {
+  outline: none;
+  animation: button 1s linear;
+}
+
+@keyframes button {
+  from {
+    background-color: var(--light-green);
+  }
+  to {
+    background-color: var(--purple);
+  }
 }
 
 .board {

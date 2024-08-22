@@ -1,4 +1,5 @@
 import './App.css';
+import './index.css';
 import { useState, useEffect } from 'react';
 import Square from './components/Square';
 import { Patterns } from './Utils';
@@ -16,6 +17,7 @@ function App() {
       checkTie();
     }
   }, [board]);
+
   useEffect(() => {
     if (result.state !== 'none') {
       alert(`Game finished! Winning player: ${result.winner}`);
@@ -94,6 +96,9 @@ function App() {
 
   return (
     <main>
+      <section className='intro'>
+        <h1>Welcome to my TicTacToe Game!</h1>
+      </section>
       <section className='board'>
         <div className='row'>
           <Square value={board[0]} chooseSquare={() => chooseSquare(0)} />
@@ -110,6 +115,9 @@ function App() {
           <Square value={board[7]} chooseSquare={() => chooseSquare(7)} />
           <Square value={board[8]} chooseSquare={() => chooseSquare(8)} />
         </div>
+      </section>
+      <section>
+        <button className='btn'>Restart the Game</button>
       </section>
     </main>
   );
