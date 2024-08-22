@@ -2,7 +2,7 @@ import './App.css';
 import './index.css';
 import { useState, useEffect } from 'react';
 import Square from './components/Square';
-import { Patterns } from './Utils';
+import { checkTie, checkWin, restarGame } from './Utils';
 
 function App() {
   // Map board 3x3
@@ -11,10 +11,10 @@ function App() {
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
   useEffect(() => {
-    const hasWon = checkWin();
+    const hasWon = checkWin(board, setResult);
 
     if (!hasWon) {
-      checkTie();
+      checkTie(board, setResult);
     }
   }, [board]);
 
@@ -44,56 +44,6 @@ function App() {
     setPlayer(player === 'X' ? 'O' : 'X');
   };
 
-  // Modify checkWin to return a boolean indicating if there's a winner
-  const checkWin = () => {
-    let hasWon = false;
-
-    Patterns.forEach((currentPattern) => {
-      const firstPlayer = board[currentPattern[0]];
-      if (firstPlayer === '') {
-        return;
-      }
-
-      let foundWinningPattern = true;
-      currentPattern.forEach((index) => {
-        if (board[index] !== firstPlayer) {
-          foundWinningPattern = false;
-        }
-      });
-
-      if (foundWinningPattern) {
-        setResult({
-          winner: firstPlayer, // Use firstPlayer to correctly indicate the winner
-          state: 'Won',
-        });
-        hasWon = true;
-        restarGame();
-      }
-    });
-
-    return hasWon; // Return true if a win is detected
-  };
-
-  const checkTie = () => {
-    let filled = true;
-    board.forEach((square) => {
-      if (square === '') {
-        filled = false;
-      }
-    });
-
-    if (filled) {
-      setResult({ winner: 'No One', state: 'Tie' });
-      restarGame();
-    }
-  };
-
-  // Restart the game
-  const restarGame = () => {
-    setBoard(['', '', '', '', '', '', '', '', '']);
-    setPlayer('X');
-  };
-
   return (
     <main>
       <section className='intro'>
@@ -117,7 +67,9 @@ function App() {
         </div>
       </section>
       <section>
-        <button className='btn'>Restart the Game</button>
+        <button className='btn' onClick={() => restarGame(setBoard, setPlayer)}>
+          Restart the Game
+        </button>
       </section>
     </main>
   );
