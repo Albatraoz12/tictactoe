@@ -1,16 +1,21 @@
+/* Global reset */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+/* Color palette */
 :root {
-  --bg-color: #d6b3ff;
-  --black: #212529;
-  --purple: #6f42c1;
-  --green: #28a745;
-  --light-green: #8fd19e;
+  --neon-green: #39ff14;
+  --neon-purple: #da00ff;
+  --dark-blue: #001f3f;
+  --bright-cyan: #00ffff;
+  --black: #000000;
+  --white: #ffffff;
 }
 
+/* Main styling */
 main {
   width: 100vw;
   height: 100vh;
@@ -19,67 +24,97 @@ main {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
-  background-color: var(--purple);
-  color: var(--black);
+  background-color: var(--dark-blue);
+  color: var(--neon-green);
+  font-family: 'Press Start 2P', cursive; /* Pixelated retro font */
 }
 
+/* Intro text styling */
 .intro {
   font-size: 28px;
+  color: var(--bright-cyan);
+  text-shadow: 0px 0px 10px var(--neon-green), 0px 0px 20px var(--neon-green);
+  text-transform: uppercase;
 }
 
+/* Button styling */
 .btn {
-  padding: 1rem;
-  border: none;
-  border-radius: 12px;
-  background-color: var(--light-green);
+  padding: 1rem 2rem;
+  border: 2px solid var(--neon-green);
+  border-radius: 5px;
+  background-color: var(--dark-blue);
   font-weight: bold;
   font-size: 15px;
   cursor: pointer;
+  color: var(--white);
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px var(--neon-green), 0px 0px 20px var(--neon-green);
 }
-.btn:focus {
-  outline: none;
-}
+
 .btn:hover {
-  outline: none;
-  animation: button 1s linear;
+  background-color: var(--neon-purple);
+  color: var(--black);
+  box-shadow: 0px 0px 15px var(--neon-purple), 0px 0px 25px var(--neon-purple);
 }
 
-@keyframes button {
-  from {
-    background-color: var(--light-green);
-  }
-  to {
-    background-color: var(--purple);
-  }
+.btn:active {
+  background-color: var(--neon-green);
+  box-shadow: 0px 0px 5px var(--neon-green);
+  transform: scale(0.95);
 }
 
+/* Board styling */
 .board {
   width: 500px;
   height: 500px;
-  background-color: var(--bg-color);
-  border: 1px solid var(--black);
+  background-color: var(--black);
+  border: 5px solid var(--neon-green);
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 15px var(--neon-green);
 }
 
+/* Rows styling */
 .row {
   flex: 33%;
   display: flex;
   flex-direction: row;
 }
 
+/* Squares styling */
 .square {
   flex: 33%;
   height: 100%;
-  border: 1px solid var(--black);
+  border: 2px solid var(--neon-green);
   cursor: pointer;
   display: grid;
   place-items: center;
   font-size: 52px;
-  color: black;
-  font-family: 'Times New Roman', Times, serif;
+  color: var(--neon-purple);
+  font-family: 'Press Start 2P', cursive; /* Pixelated font for the board */
+  transition: background-color 0.3s ease;
+}
+
+.square:hover {
+  background-color: var(--bright-cyan);
 }
 
 .square:active {
-  background-color: var(--purple);
+  background-color: var(--neon-purple);
+}
+
+/* Optional presentation reset */
+.container {
+  padding-top: 50px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #777;
 }
