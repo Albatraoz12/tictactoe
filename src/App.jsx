@@ -67,9 +67,14 @@ function App() {
         </div>
       </section>
       <section>
-        <button className='btn' onClick={() => restarGame(setBoard, setPlayer)}>
-          Restart the Game
-        </button>
+        {result.state !== 'none' && (
+          <button
+            className='btn'
+            onClick={() => restarGame(setBoard, setPlayer, setResult)}
+          >
+            Restart the Game
+          </button>
+        )}
       </section>
     </main>
   );

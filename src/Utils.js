@@ -52,7 +52,8 @@ export const checkTie = (board, setResult) => {
 };
 
 // Restart the game
-export const restarGame = (setBoard, setPlayer) => {
+export const restarGame = (setBoard, setPlayer, setResult) => {
   setBoard(['', '', '', '', '', '', '', '', '']);
   setPlayer('X');
+  setResult({ winner: 'none', state: 'none' });
 };
