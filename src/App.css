@@ -3,6 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  --bg-color: #d6b3ff;
+  --black: #212529;
+  --purple: #6f42c1;
+  --green: #28a745;
+  --light-green: #8fd19e;
+}
 
 main {
   width: 100vw;
@@ -10,13 +17,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--purple);
+  color: var(--black);
 }
 
 .board {
   width: 500px;
   height: 500px;
-  background-color: aquamarine;
-  border: 1px solid black;
+  background-color: var(--bg-color);
+  border: 1px solid var(--black);
   display: flex;
   flex-direction: column;
 }
@@ -30,15 +39,15 @@ main {
 .square {
   flex: 33%;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid var(--black);
   cursor: pointer;
   display: grid;
   place-items: center;
-  font-size: 30px;
+  font-size: 52px;
   color: black;
   font-family: 'Times New Roman', Times, serif;
 }
 
 .square:active {
-  background-color: #64f4c4;
+  background-color: var(--purple);
 }
