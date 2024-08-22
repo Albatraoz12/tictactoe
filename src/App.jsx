@@ -1,11 +1,13 @@
 import './App.css';
 import { useState } from 'react';
 import Square from './components/Square';
+import { Patterns } from './Utils';
 
 function App() {
   //Map board 3x9
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
   const [player, setPlayer] = useState('X');
+  const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
   //Check winner or loser logic for the game
   const chooseSquare = (squareIndex) => {
@@ -25,6 +27,31 @@ function App() {
     } else {
       setPlayer('X');
     }
+  };
+
+  // Checks the winner
+  const checkWin = () => {
+    //loop through the patterns arrays index with the players
+    Patterns.forEach((currentPattern) => {
+      //checks which player won
+      const firstPlayer = board[currentPattern[0]];
+      if (firstPlayer === '') {
+        return;
+      }
+      let foundWinningPattern = true;
+      currentPattern.forEach((index) => {
+        if (board[index] != firstPlayer) {
+          foundWinningPattern = false;
+        }
+      });
+
+      if (foundWinningPattern) {
+        setResult({
+          winner: player,
+          state: 'won',
+        });
+      }
+    });
   };
 
   return (
