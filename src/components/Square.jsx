@@ -1,7 +1,9 @@
-const Square = () => {
+/* eslint-disable react/prop-types */
+import '../App.css';
+const Square = ({ value, chooseSquare }) => {
   return (
-    <div>
-      <h1>Square</h1>
+    <div className='square' onClick={chooseSquare}>
+      {value}
     </div>
   );
 };
