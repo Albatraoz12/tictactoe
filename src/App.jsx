@@ -19,6 +19,13 @@ function App() {
         return value;
       })
     );
+
+    //Change player between X and O
+    if (player === 'X') {
+      setPlayer('O');
+    } else {
+      setPlayer('X');
+    }
   };
 
   return (
