@@ -38,3 +38,7 @@ main {
   color: black;
   font-family: 'Times New Roman', Times, serif;
 }
+
+.square:active {
+  background-color: #64f4c4;
+}

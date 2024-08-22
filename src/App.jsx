@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import './App.css';
 import { useState } from 'react';
 import Square from './components/Square';
