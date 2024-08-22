@@ -1,5 +1,4 @@
 import './App.css';
-import './index.css';
 import { useState, useEffect } from 'react';
 import Square from './components/Square';
 import { checkTie, checkWin, restarGame } from './Utils';
