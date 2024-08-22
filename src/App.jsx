@@ -6,9 +6,20 @@ import Square from './components/Square';
 function App() {
   //Map board 3x9
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
+  const [player, setPlayer] = useState('X');
 
   //Check winner or loser logic for the game
-  const chooseSquare = (squareIndex) => {};
+  const chooseSquare = (squareIndex) => {
+    setBoard(
+      board.map((value, index) => {
+        if (index === squareIndex && value === '') {
+          return player;
+        }
+
+        return value;
+      })
+    );
+  };
 
   return (
     <main>
