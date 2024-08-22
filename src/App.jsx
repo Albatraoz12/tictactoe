@@ -11,6 +11,8 @@ function App() {
 
   useEffect(() => {
     checkWin();
+    checkTie();
+
     //Change player between X and O
     if (player === 'X') {
       setPlayer('O');
@@ -57,10 +59,23 @@ function App() {
       if (foundWinningPattern) {
         setResult({
           winner: player,
-          state: 'won',
+          state: 'Won',
         });
       }
     });
+  };
+
+  const checkTie = () => {
+    let filled = true;
+    board.forEach((square) => {
+      if (square === '') {
+        filled = false;
+      }
+    });
+
+    if (filled) {
+      setResult({ winner: 'No One', state: 'Tie' });
+    }
   };
 
   return (
