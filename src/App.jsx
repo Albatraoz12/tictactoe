@@ -4,61 +4,61 @@ import Square from './components/Square';
 import { Patterns } from './Utils';
 
 function App() {
-  //Map board 3x9
+  // Map board 3x3
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [player, setPlayer] = useState('O');
+  const [player, setPlayer] = useState('X');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
   useEffect(() => {
     checkWin();
     checkTie();
-
-    //Change player between X and O
-    if (player === 'X') {
-      setPlayer('O');
-    } else {
-      setPlayer('X');
-    }
   }, [board]);
 
   useEffect(() => {
-    if (result.state != 'none') {
+    if (result.state !== 'none') {
       alert(`Game finished! Winning player: ${result.winner}`);
     }
   }, [result]);
 
-  //Check winner or loser logic for the game
+  // Check winner or loser logic for the game
   const chooseSquare = (squareIndex) => {
+    // Prevent changing a filled square
+    if (board[squareIndex] !== '') {
+      return;
+    }
+
     setBoard(
       board.map((value, index) => {
-        if (index === squareIndex && value === '') {
+        if (index === squareIndex) {
           return player;
         }
-
         return value;
       })
     );
+
+    // Switch the player
+    setPlayer(player === 'X' ? 'O' : 'X');
   };
 
   // Checks the winner
   const checkWin = () => {
-    //loop through the patterns arrays index with the players
+    // Loop through the patterns arrays index with the players
     Patterns.forEach((currentPattern) => {
-      //checks which player won
+      // Checks which player won
       const firstPlayer = board[currentPattern[0]];
       if (firstPlayer === '') {
         return;
       }
       let foundWinningPattern = true;
       currentPattern.forEach((index) => {
-        if (board[index] != firstPlayer) {
+        if (board[index] !== firstPlayer) {
           foundWinningPattern = false;
         }
       });
 
       if (foundWinningPattern) {
         setResult({
-          winner: player,
+          winner: firstPlayer, // Change to firstPlayer to accurately reflect the winner
           state: 'Won',
         });
         restarGame();
@@ -80,10 +80,10 @@ function App() {
     }
   };
 
-  //restart the game
+  // Restart the game
   const restarGame = () => {
     setBoard(['', '', '', '', '', '', '', '', '']);
-    setPlayer('O');
+    setPlayer('X');
   };
 
   return (
