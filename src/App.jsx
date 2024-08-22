@@ -6,11 +6,17 @@ import { Patterns } from './Utils';
 function App() {
   //Map board 3x9
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [player, setPlayer] = useState('X');
+  const [player, setPlayer] = useState('O');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
 
   useEffect(() => {
     checkWin();
+    //Change player between X and O
+    if (player === 'X') {
+      setPlayer('O');
+    } else {
+      setPlayer('X');
+    }
   }, [board]);
 
   useEffect(() => {
@@ -30,13 +36,6 @@ function App() {
         return value;
       })
     );
-
-    //Change player between X and O
-    if (player === 'X') {
-      setPlayer('O');
-    } else {
-      setPlayer('X');
-    }
   };
 
   // Checks the winner
