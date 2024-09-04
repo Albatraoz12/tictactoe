@@ -8,10 +8,11 @@ function App() {
   const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
   const [player, setPlayer] = useState('X');
   const [result, setResult] = useState({ winner: 'none', state: 'none' });
+  const [winnerMessage, setWinnerMessage] = useState('');
 
   useEffect(() => {
     const hasWon = checkWin(board, setResult);
-
+    setWinnerMessage('');
     if (!hasWon) {
       checkTie(board, setResult);
     }
@@ -19,7 +20,7 @@ function App() {
 
   useEffect(() => {
     if (result.state !== 'none') {
-      alert(`Game finished! Winning player: ${result.winner}`);
+      setWinnerMessage(`Game finished! Winning player: ${result.winner}`);
     }
   }, [result]);
 
@@ -47,6 +48,9 @@ function App() {
     <main>
       <section className='intro'>
         <h1>Welcome to my TicTacToe Game!</h1>
+      </section>
+      <section>
+        <h2>{winnerMessage}</h2>
       </section>
       <section className='board'>
         <div className='row'>
